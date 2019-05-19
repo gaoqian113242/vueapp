@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "axios": "^0.18.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-component": "^0.10.1",
@@ -33,6 +34,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "express": "^4.17.0",
     "mint-ui": "^2.2.9",
     "vue": "^2.5.2",
     "vue-resource": "^1.5.1",

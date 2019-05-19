@@ -16,6 +16,10 @@ import router from './router.js'
 
 import VueResource from 'vue-resource'
 
+import axios from 'axios'
+
+Vue.prototype.$axios = axios;
+
 Vue.use(VueResource)
 
 Vue.component(Header.name, Header)
