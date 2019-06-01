@@ -1,36 +1,57 @@
 <template>
     <div class="newsinfo-container">
-        <h3 class="title">新闻标题</h3>
+        <h3 class="title" v-if="id=$route.params.id">{{ newsinfo.title }}</h3>
         <p class="subtitle">
-            <span>发表时间: </span>
-            <span>点击：0次</span>
+            <span>发表时间: {{ newsinfo.add_time | dateFormat }}</span>
+            <span>点击：{{ newsinfo.click  }}次</span>
         </p>
 
         <hr>
 
         <div class="content"></div>
+
+        <comment-box></comment-box>
     </div>
 </template>
 
 <script>
+import comment from "../subcomponents/comment.vue" 
 import { Toast } from "mint-ui";
 export default {
     data(){
         return{
-            id: this.$route.params.id
+            id: this.$route.params.id,
+            newsinfo: {}
         };
     },
+    created() {
+        this.getNewsList();
+    },
     methods: {
-        getNewsIfo(){
-            this.$http.get('static/newsinfo.json').then(
+        // getNewsInfo(){
+        //     this.$http.get("static/newsinfo.json").then(
+        //     result => {
+        //         var data = result.body;
+        //         this.newsinfo = data.message;
+        //         console.log(this.newsinfo)
+        //     },
+        //     error => {
+        //         Toast("失败");
+        //     })
+        // },
+        getNewsList(){
+            this.$http.get("static/newslist.json").then(
             result => {
                 var data = result.body;
-                this.newslist = data.message;
+                this.newsinfo = data.message;
             },
             error => {
                 Toast("失败");
             })
         }
+    },
+    components: {
+        "comment-box": comment
     }
 }
 </script>
@@ -49,9 +70,6 @@ export default {
         color: #226aff;
         display: flex;
          justify-content: space-between;
-    }
-    .content{
-
     }
 }
 </style>

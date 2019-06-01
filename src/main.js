@@ -5,7 +5,8 @@ import app from './App.vue'
 import {
     Header,
     Swipe,
-    SwipeItem
+    SwipeItem,
+    Button
 } from 'mint-ui'
 
 import './lib/mui/css/mui.min.css'
@@ -35,6 +36,7 @@ Vue.component(Swipe.name, Swipe)
 
 Vue.component(SwipeItem.name, SwipeItem)
 
+Vue.component(Button.name, Button)
 var vm = new Vue({
     el: '#app',
     render: c => c(app),

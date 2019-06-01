@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul class="mui-table-view">
-      <li class="mui-table-view-cell mui-media" v-for="item in newslist" :key="item.id">
+      <li class="mui-table-view-cell mui-media" v-for="(item) in newslist" :key="item.id">
         <router-link :to="'/home/newsinfo/' + item.id">
           <img class="mui-media-object mui-pull-left" :src="item.img_url">
           <div class="mui-media-body">
@@ -35,6 +35,7 @@ export default {
         result => {
           var data = result.body;
           this.newslist = data.message;
+          console.log(this.newslist)
         },
         error => {
           Toast("失败");
