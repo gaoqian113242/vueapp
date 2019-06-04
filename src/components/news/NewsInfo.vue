@@ -1,6 +1,6 @@
 <template>
     <div class="newsinfo-container" >
-        <li v-for="item in newsinfo" :key="item.id" >
+        <a v-for="item in newsinfo" :key="item.id" >
         <h3 class="title" >{{ item.title }}</h3>
         <p class="subtitle">
             <span>发表时间: {{ item.add_time | dateFormat }}</span>
@@ -9,8 +9,10 @@
 
         <hr>
 
-        <div class="content"></div>
-</li>
+        <div class="content">
+            <img :src="item.content">
+        </div>
+</a>
         <comment-box></comment-box>
     </div>
 </template>
@@ -21,20 +23,13 @@ import { Toast } from "mint-ui";
 export default {
     data(){
         return{
-            id: this.$route.params.id,
-            newsinfo: [
-        //         {
-        //         id: 13,
-        //         title : "买房还是炒股，2015年买房无法拒绝的5大理由",
-        //         click : 1,
-        //         add_time:  "2019-05-27 10:10:10",
-        //         content : "https://img10.360buyimg.com/n7/jfs/t1/31203/23/9994/197564/5cab210dE64e20358/d94e70571c1fd455.jpg"
-        // }
-            ]
+            id: 13,
+            newsinfo: []
         };
     },
     created() {
         this.getNewsInfo();
+        this.next();
     },
     methods: {
         getNewsInfo(){
@@ -48,6 +43,10 @@ export default {
                 Toast("失败");
             })
         },
+        next(){
+            id++;
+            getNewsInfo();
+        }
         
     },
     components: {
